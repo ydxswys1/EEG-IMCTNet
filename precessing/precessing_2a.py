@@ -52,7 +52,7 @@ class LoadBCIC(LoadData):
         # raw_data.plot()
         # raw_downsampled = raw_data.copy().resample(sfreq=128)
         raw_data.load_data()
-        raw_data.filter(4., 40., fir_design='firwin2')
+        raw_data.filter(4., 40., fir_design='firwin')
         self.fs = raw_data.info.get('sfreq')
         events, event_ids = mne.events_from_annotations(raw_data)
         stims = [value for key, value in event_ids.items() if key in self.stimcodes]
@@ -88,7 +88,7 @@ class LoadBCIC(LoadData):
         return label.reshape(-1)
 
 
-data_path = r""  # the path of raw data
+data_path = r"D:\download\EEG-Conformer-main\Data\strict_TE\datasets"  # the path of raw data
 
 for w in range(1, 10):
     if w == 4:
