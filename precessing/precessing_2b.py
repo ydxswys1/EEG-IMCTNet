@@ -1,10 +1,3 @@
-# Note:The B0102T.gdf of the dataset subject2 and B504E.gdf of the dataset subject5 save the data in a different format than the others
-#
-# catalogue:
-#     \BCICIV_2b_gdf
-#         \B010T.gdf...
-#     \true_labels
-#         \B010T.mat...
 import mne
 import numpy as np
 import torch
@@ -51,10 +44,19 @@ def pre(root_x, root_y, name_x, name_y, exist_question=False, test=False):
     # epochs.plot()
     return x_data, y_label
 
+
+
+# Note:The B0102T.gdf of the dataset subject2 and B504E.gdf of the dataset subject5 save the data in a different format than the others
+#
+# catalogue:
+#     \BCICIV_2b_gdf
+#         \B010T.gdf...
+#     \true_labels
+#         \B010T.mat...
+
+
 root_x = r"BCI_2B\BCICIV_2b_gdf"
 root_y = r"BCI_2B\true_labels"
-# x,y=pre(root_x,root_y,"B0205E.gdf","B0205E.mat",test=True)
-# print(y.shape)
 for w in range(1,10):
     for i in range(1, 6):
 
@@ -107,12 +109,12 @@ for w in range(1,10):
     import scipy.io
 
     print(data['data'].shape)
-    # 使用savemat函数保存数据
-    scipy.io.savemat(rf'//////Data\A0{w}T.mat', data)
+
+    scipy.io.savemat(rf'//////Data\A0{w}T.mat', data)#Save the path of the preprocessed data
 
     data1 = {'data': x_test[:, :, :1000], 'label': y_test.reshape(-1, 1)}
     import scipy.io
 
     print(data1['data'].shape)
-    # 使用savemat函数保存数据
-    scipy.io.savemat(rf'///////\Data\A0{w}E.mat', data1)
+
+    scipy.io.savemat(rf'///////\Data\A0{w}E.mat', data1)#Save the path of the preprocessed data

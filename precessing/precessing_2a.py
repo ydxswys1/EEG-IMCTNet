@@ -88,7 +88,7 @@ class LoadBCIC(LoadData):
         return label.reshape(-1)
 
 
-data_path = r"D:\download\EEG-Conformer-main\Data\strict_TE\datasets"  # the path of raw data
+data_path = r"Data\strict_TE\datasets"  # the path of raw data
 
 for w in range(1, 10):
     if w == 4:
@@ -128,10 +128,6 @@ for w in range(1, 10):
 
     X_train = X_train[:, :, :1000]
     X_test = X_test[:, :, :1000]
-
-    # final_data['data'] = multifreq_train_data
-    # final_data_test['data'] = multifreq_test_data
-
     data = {'data': X_train, 'label': Y_train.reshape(288, 1) + 1}
     scipy.io.savemat(fr'..\Data\strict_TE\A0{str(w)}T.mat', data)
     data = {'data': X_test, 'label': Y_test.reshape(288, 1) + 1}

@@ -104,18 +104,25 @@ def filterd(root,name_train,savapath):
     scipy.io.savemat(os.path.join(savapath, name_train), data)
 
 
+# catalogue:
+#     \datasetPath:
+#         \Sess01:
+#             sess01_subj01_EEG_MI.mat...
+#         \Sess02:
+#             sess02_subj01_EEG_MI.mat...
+# semi_finished_savePath is a path that holds pre-processed semi-finished products
+# savapath is the path to save the preprocessed data
+
 if __name__ == '__main__':
     datasetPath = 'D:\download\LightConvNet-main\dataset\OpenBMI_MAT'
-    raw_savePath = r'E:\project\pythonProject\raw'
-    preprocessKoreaDataset(datasetPath, raw_savePath)
-    root = r'E:\project\pythonProject\raw'
-    savapath = r'E:\project\pythonProject\chuliwande'
-    # savapath = r'D:\download\LightConvNet-main\dataset\25_FILTERD'
-    for i in range(1,5):
+    semi_finished_savePath = r'E:\project\pythonProject\semi_finished_savePath'
+    preprocessKoreaDataset(datasetPath, semi_finished_savePath)
+    savapath = r'E:\project\pythonProject\BMI'
+    for i in range(1,55):
 
         name='A'+str(i).zfill(2)
         print(name)
         name_train = name + str("T.mat")
         name_test = name + str("E.mat")
-        filterd(root,name_train,savapath)
-        filterd(root,name_test,savapath)
+        filterd(semi_finished_savePath,name_train,savapath)
+        filterd(semi_finished_savePath,name_test,savapath)
